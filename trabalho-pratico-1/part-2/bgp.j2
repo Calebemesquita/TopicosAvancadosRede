@@ -1,0 +1,14 @@
+hostname {{ hostname }}
+!
+router bgp {{ asn }}
+ bgp router-id {{ router_id }}
+ 
+ ! --- Bloco Dinamico de Vizinhos ---
+ {% for vizinho in neighbors %}
+ neighbor {{ vizinho.ip }} remote-as {{ vizinho.asn }}
+ {% endfor %}
+ ! ----------------------------------
+ 
+ network {{ network }}
+!
+end

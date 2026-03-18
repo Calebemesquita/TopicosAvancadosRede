@@ -1,0 +1,44 @@
+# ==========================================
+#  Python & Ambientes Virtuais
+# ==========================================
+# Não subir a pasta do ambiente virtual (muito pesada e específica da sua máquina)
+venv/
+env/
+.env/
+.venv/
+
+# Arquivos compilados do Python (lixo de execução)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ==========================================
+#  Mininet, FRRouting & Logs de Rede
+# ==========================================
+# Ignorar logs de roteamento e capturas de pacote
+*.log
+*.pcap
+*.cap
+
+# Ignorar arquivos de trava de processo (aqueles zumbis que deram dor de cabeça)
+*.pid
+*.sock
+
+# ==========================================
+# IDEs e Sistema Operacional
+# ==========================================
+# VS Code, PyCharm, etc.
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Lixo de SO (Mac/Windows)
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# 📁 Arquivos Gerados Localmente (Opcional)
+# ==========================================
+# Descomente a linha abaixo se NÃO quiser subir os .conf gerados localmente pro GitLab
+# *.conf
