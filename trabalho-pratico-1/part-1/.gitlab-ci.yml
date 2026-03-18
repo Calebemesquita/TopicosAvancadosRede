@@ -1,0 +1,29 @@
+image: python:3.10-slim
+
+stages:
+  - validacao
+  - geracao_artifact
+  - execucao
+testar_yaml:
+  stage: validacao
+  script:
+    - echo "Instalae yamllint"
+    - pip install yamllint
+    - echo "Verificando o config.yaml"
+    - yamllint config.yaml
+
+criar_arquivo:
+  stage: geracao_artifact
+  script:
+    - echo "Gerando arquivo de saida:"
+    - echo "Este arquivo foi gerado automaticamente pelo pipeline CI/CD na etapa de artifact." > output.txt
+  artifacts:
+    paths:
+      - output.txt
+    expire_in: 1 week
+
+rodar_python:
+  stage: execucao
+  script:
+    - echo "Executando o script.py"
+    - python script.py
