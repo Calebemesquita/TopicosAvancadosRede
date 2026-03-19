@@ -1,0 +1,52 @@
+Organizações -> Crie um site
+Manufacturer -> Devices > Manufacturers > Add
+Device Role (Papel) -> Devices > Device Roles > Add. -> criar router
+Device Type (Modelo) -> Devices > Device Types > Add. select fabricante FRRouting modelo como -> Roteador Virtual.
+
+Vamos entender que o NetBox é um DCIM (Data Center Infrastructure Management).
+Ele foi para modelar a realidade física de um Data Center inteiro.
+
+De maneira simples netbox n vai deixar voçe cometer erros bestas.
+como tentar instanciar objeto em poo sem ter a classe.
+
+1. Primeiro entramos netbox criamos um site, é o local fisico
+site vai mostrar onde é
+
+2. Segundo criamos um Manufacturer (fabricante)
+cisco? juniper? huawei?, nosso caso open source FRRouting 
+Por que isso importa?
+Ciscco chama porta de rede de GigabitEthernet0/0/0
+Juniper chama de ge-0/0/0
+Linux chama de eth0
+Saber dialeto a passar para o jinja2
+
+3. Terceiro Device type O Device Type dita como o chassi do equipamento é construído. 
+Por exemplo, um modelo "Cisco ISR 4331". é um modelo e seu tipo kkkkk
+O NetBox sabe que esse modelo de roteador tem exatamente 3 portas de rede e 2 fontes de energia.
+Se um bobão tentar cadastrar uma 4ª porta de rede nesse roteador lá no NetBox
+o sistema dá erro avisando porque fisicamente isso é impossíve.
+
+4. Quarto devise role O que esse bicho faz na rede? Ele é um roteador de borda (Edge)?
+É o núcleo (Core)? É um Switch de acesso pros PCs dos alunos? É um Firewall?
+Quando formos rodar scripty com uma automação o netbox pega o papel deles  
+Nunca você nunca diz "Aplica esse script no R1 e R2". 
+Você diz para a API: "NetBox, me dê todos os IPs de todos os equipamentos que tenham a Role 'BGP'(grupo)
+Se um dia você instalar mais 10 roteadores com essa Role,
+o seu script configura todos eles automaticamente sem alteração no codigo
+
+
+Agora vamos criar uns roteadores e atribuir a eles
+nome, site, fabricante, tipoEquipamento, funcao, alem de no campo extra:
+{
+  "asn": 65001,
+  "router_id": "1.1.1.1"
+}
+id para cada um 
+e um asn para identificar regisão do Roteador de borda
+
+
+
+Paramos para configurar switch
+.. 
+
+LEMBRAR ORGANIZAR PLANO FORA DO GIT PASSAR PRA CA.

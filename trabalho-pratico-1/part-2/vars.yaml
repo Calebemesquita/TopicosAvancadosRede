@@ -36,4 +36,4 @@ roteadores:
     network: 192.168.4.0/24
     neighbors:
       - ip: 10.0.0.1
-        asn: 65001
+        asn: 65001   
