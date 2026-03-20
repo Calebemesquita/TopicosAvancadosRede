@@ -1,16 +1,12 @@
 #!/usr/bin/python3
 import json
 import os
-from mininet.net import Mininet
-from mininet.node import OVSBridge
-from mininet.cli import CLI
-from mininet.log import setLogLevel, info
 from jinja2 import Environment, FileSystemLoader
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def gerar_configs_jinja():
-    info("*** [1] Lendo o JSON do NetBox e Gerando Configs com Jinja2...\n")
+    print("*** [1] Lendo o JSON do NetBox e Gerando Configs com Jinja2...")
     json_path = os.path.join(BASE_DIR, 'netbox_dados_jinja.json')
     with open(json_path, 'r') as f:
         dados = json.load(f)
@@ -28,9 +24,14 @@ def gerar_configs_jinja():
         with open(caminho_arquivo, 'w') as f:
             f.write(config_renderizada)
         
-        info(f"    - Configuração gerada: {caminho_arquivo}\n")
+        print(f"    - Configuração gerada: {caminho_arquivo}")
 
 def iniciar_topologia():
+    from mininet.net import Mininet
+    from mininet.node import OVSBridge
+    from mininet.cli import CLI
+    from mininet.log import info
+
     info("*** [2] Iniciando o Mininet...\n")
     net = Mininet(controller=None, switch=OVSBridge)
 
@@ -65,12 +66,15 @@ def iniciar_topologia():
         num = hostname.replace('r', '')
         r.cmd(f'ip addr add 192.168.{num}.1/24 dev lo')
         r.cmd('ip link set lo up')
+        
         r.cmd(f'cp {config_dir}/bgpd.conf /etc/frr/bgpd.conf')
-        r.cmd('touch /etc/frr/zebra.conf') 
+        r.cmd('touch /etc/frr/zebra.conf')
         r.cmd('touch /etc/frr/vtysh.conf')
+        
         r.cmd('chown -R frr:frrvty /etc/frr')
         r.cmd('chown -R frr:frrvty /var/run/frr')
         r.cmd('chmod 775 /var/run/frr')
+        
         r.cmd('/usr/lib/frr/zebra -f /etc/frr/zebra.conf -d -z /var/run/frr/zserv.api -i /var/run/frr/zebra.pid')
         r.cmd('sleep 1')
         r.cmd('/usr/lib/frr/bgpd -f /etc/frr/bgpd.conf -d -z /var/run/frr/zserv.api -i /var/run/frr/bgpd.pid')
@@ -85,6 +89,7 @@ def iniciar_topologia():
     net.stop()
 
 if __name__ == '__main__':
+    from mininet.log import setLogLevel
     setLogLevel('info')
-    gerar_configs_jinja() 
+    gerar_configs_jinja()
     iniciar_topologia()
