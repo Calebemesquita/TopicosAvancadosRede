@@ -1,0 +1,50 @@
+image: python:3.10-slim
+
+stages:
+  - validacao
+  - geracao_artifact
+  - execucao
+
+
+testar_yaml:
+  stage: validacao
+  script:
+    - echo "Instalando yamllint"
+    - pip install yamllint
+    - echo "Verificando o config.yaml da parte 1"
+    - yamllint trabalho-pratico-1/part-1/config.yaml
+
+criar_arquivo:
+  stage: geracao_artifact
+  script:
+    - echo "Gerando arquivo de saida:"
+    - echo "Este arquivo foi gerado automaticamente pelo pipeline CI/CD na etapa de artifact." > output.txt
+  artifacts:
+    paths:
+      - output.txt
+    expire_in: 1 week
+
+rodar_python_p1:
+  stage: execucao
+  script:
+    - echo "Executando o script.py da Parte 1"
+    - cd trabalho-pratico-1/part-1 && python
+
+validar_json_p4:
+  stage: validacao
+  script:
+    - echo "Validando a sintaxe do JSON do NetBox..."
+    - python -m json.tool trabalho-pratico-1/part-4/netbox_dados_jinja.json > /dev/null
+
+gerar_configs_bgp_p4:
+  stage: geracao_artifact
+  before_script:
+    - pip install jinja2
+  script:
+    - echo "Gerando configs do BGP com Jinja2..."
+    - cd trabalho-pratico-1/part-4 && python -c "import topologia; topologia.gerar_configs_jinja()"
+  artifacts:
+    paths:
+      - trabalho-pratico-1/part-4/configs/
+    expire_in: 1 week
+    name: "Configs_BGP_Producao"
