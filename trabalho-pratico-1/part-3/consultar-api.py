@@ -8,7 +8,7 @@ NETBOX_URL = os.getenv("NETBOX_URL", "http://localhost:8000")
 nb = pynetbox.api(url=NETBOX_URL, token=TOKEN)
 
 try:
-    print("Conectando ao NetBox...")
+    print("Conectando ao NetBox")
     
     roteadores = nb.dcim.devices.filter(role="router")
     
@@ -42,7 +42,7 @@ try:
     with open('netbox_dados_jinja.json', 'w') as arquivo:
         json.dump(dados_jinja2, arquivo, indent=4)
         
-    print("\n🚀 Sucesso 'netbox_dados_jinja.json' gerado.")
+    print("\n Sucesso 'netbox_dados_jinja.json' gerado.")
 
 except Exception as e:
     print(f"Erro {e}")
