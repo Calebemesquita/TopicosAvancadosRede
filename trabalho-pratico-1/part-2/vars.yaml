@@ -1,5 +1,5 @@
-# aqui as configurações basicas para o jinja2 ler
-# nota: neighbors vão listar vizinhos do roteador BGP 
+# aqui as confgurações basicas para o jija2 ler
+# nota: eighbors vão listar vizinhos do roteeador BGP 
 # com seu ip e seu identificador de zona o asn
 roteadores:
   - hostname: r1
