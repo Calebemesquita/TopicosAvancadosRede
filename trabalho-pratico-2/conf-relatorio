@@ -1,0 +1,52 @@
+# Calebe Mesquita da Silva Matricula: 566342
+# Gustavo Gomes Sousa Matricula: 569539
+
+# config r1
+enable
+configure terminal
+router bgp 65001
+ bgp router-id 10.0.1.1
+ no bgp ebgp-requires-policy
+ neighbor 10.0.12.2 remote-as 65002
+
+ address-family ipv4 unicast
+  network 10.0.1.0/24
+  neighbor 10.0.12.2 activate
+ exit-address-family
+
+
+#config r2
+enable
+configure terminal
+router bgp 65002
+ bgp router-id 10.0.2.1
+ no bgp ebgp-requires-policy
+ neighbor 10.0.12.1 remote-as 65001
+
+ address-family ipv4 unicast
+  network 10.0.2.0/24
+  neighbor 10.0.12.1 activate
+ exit-address-family
+
+
+# RELATORIO:
+O que foi nessesario:
+Note que Precisamos estabelecer uma sessão eBGP entre roteador r1
+r1(AS 65001) e o r2(AS 65002), cada um deles precisa de um router-id
+Como estamos lab fechado podemos confiar em todo mundo entao, nao temos
+politicas de segurança sobre quais rotas aceitar, apos isso anunciamos as redes locais
+dentro do bloco address-famliy ipv4 unicast, assim o resto dos ips con
+
+Problemas encontrados:
+problemas em relação ao comando
+r2 vtysh -c "show bgp" (versões antigas)
+Alem de detlahes com espaços e nomeclatura dos comandos
+
+Como foram resolvidos:
+Apos pesquisas e analise das configurações e respostas dos comandos chegamos
+a conclusão que a rede estavs funcional. então optamos por um comando de versão mais nova 
+r2 vtysh -c "show bgp ipv4 unicast" que pode ser encontrado nas imagens no dir Imagens
+
+
+
+

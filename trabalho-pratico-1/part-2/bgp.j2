@@ -3,7 +3,7 @@ hostname {{ hostname }}
 router bgp {{ asn }}
  bgp router-id {{ router_id }}
  no bgp ebgp-requires-policy
-{%- for neighbor in neighbors %}
+{%- for neighbor in neighbors }
  neighbor {{ neighbor.ip }} remote-as {{ neighbor.asn }}
 {%- endfor %}
 !
