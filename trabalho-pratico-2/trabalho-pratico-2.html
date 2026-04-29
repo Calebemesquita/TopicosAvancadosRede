@@ -1,0 +1,285 @@
+<!DOCTYPE html><html><head>
+      <title>trabalho-pratico-2</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\miche\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.22\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script>
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="trabalho-prático-2"><strong>TRABALHO PRÁTICO 2</strong> </h1>
+<p><strong>Assunto:</strong> Instalação do Mininet + FRRouting (FRR) e Configuração de BGP em Topologia Simples</p>
+<p><strong>Disciplina:</strong> Tópicos Avançados em Redes de Computadores</p>
+<p><strong>Professor:</strong> Michel Sales</p>
+<p><strong>Módulo:</strong> 2</p>
+<p><strong>Equipes:</strong> Máximo <strong>2 alunos</strong> por grupo</p>
+<hr>
+<h2 id="-descrição-geral">📘 <strong>Descrição Geral</strong> </h2>
+<p>Neste trabalho prático, você irá:</p>
+<ol>
+<li>Provisionar uma VM na AWS Academy</li>
+<li>Instalar o <strong>Mininet</strong> e o <strong>FRRouting (FRR)</strong></li>
+<li>Executar um script Python que <strong>cria dinamicamente</strong> uma topologia contendo:
+<ul>
+<li><strong>2 roteadores FRR</strong></li>
+<li><strong>2 switches L2</strong></li>
+<li><strong>2 hosts</strong></li>
+</ul>
+</li>
+<li>Descobrir e configurar manualmente os comandos BGP necessários para:
+<ul>
+<li>estabelecer a sessão BGP entre r1 e r2</li>
+<li>anunciar as redes conectadas</li>
+<li>permitir que h1 pingue h2</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>Importante:</strong><br>
+A topologia <strong>não existe previamente</strong>.<br>
+Todos os roteadores, switches e hosts são <strong>criados somente quando o aluno executa o script Python (<code>bgp-topo.py</code>)</strong>.<br>
+Nada é configurado fora do script.</p>
+</blockquote>
+<hr>
+<h1 id="-conteúdo">🧱 <strong>Conteúdo</strong> </h1>
+<ul>
+<li>Requisitos</li>
+<li>Instalação do Mininet</li>
+<li>Instalação do FRRouting</li>
+<li>Criação da topologia Mininet (via script Python)</li>
+<li>Execução do script</li>
+<li><strong>Atividade: completar as configurações BGP</strong></li>
+<li>Verificações e testes</li>
+<li>Entrega</li>
+</ul>
+<hr>
+<h1 id="-0-provisionar-a-vm-na-aws-academy">🟦 <strong>0. Provisionar a VM na AWS Academy</strong> </h1>
+<p>Crie uma instância EC2 que servirá como ambiente de laboratório.</p>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tipo da instância</td>
+<td><code>t2.large</code></td>
+</tr>
+<tr>
+<td>Disco</td>
+<td>20 GB</td>
+</tr>
+<tr>
+<td>SO</td>
+<td>Ubuntu Server 24.04 LTS</td>
+</tr>
+<tr>
+<td>Rede</td>
+<td>Acesso SSH liberado</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="-requisitos">🟩 <strong>Requisitos</strong> </h1>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> <span class="token function">git</span> <span class="token function">curl</span> <span class="token function">nano</span> python3-pip
+</code></pre><hr>
+<h1 id="-1-instalar-o-mininet">🟦 <strong>1) Instalar o Mininet</strong> </h1>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> mininet
+mn <span class="token parameter variable">--version</span>
+</code></pre><hr>
+<h1 id="-2-instalar-o-frrouting-frr">🟧 <strong>2) Instalar o FRRouting (FRR)</strong> </h1>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">curl</span> <span class="token parameter variable">-s</span> https://deb.frrouting.org/frr/keys.asc <span class="token operator">|</span> <span class="token function">sudo</span> gpg <span class="token parameter variable">--dearmour</span> <span class="token parameter variable">-o</span> /usr/share/keyrings/frrouting.gpg
+
+<span class="token builtin class-name">echo</span> <span class="token string">"deb [signed-by=/usr/share/keyrings/frrouting.gpg] https://deb.frrouting.org/frr noble frr-stable"</span> <span class="token punctuation">\</span>
+<span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> /etc/apt/sources.list.d/frr.list
+
+<span class="token function">sudo</span> <span class="token function">apt</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> frr frr-pythontools
+
+vtysh <span class="token parameter variable">-c</span> <span class="token string">"show version"</span>
+</code></pre><hr>
+<h1 id="-3-criar-a-topologia-mininet">🟦 <strong>3) Criar a topologia Mininet</strong> </h1>
+<p>O professor fornecerá o arquivo <code>bgp-topo.py</code>, contendo:</p>
+<ul>
+<li>criação da topologia</li>
+<li>roteadores FRR com namespaces isolados</li>
+<li>switches L2</li>
+<li>hosts configurados</li>
+<li>blocos BGP <strong>incompletos</strong>, que os alunos devem preencher</li>
+</ul>
+<blockquote>
+<p><strong>Reforço:</strong><br>
+A topologia só é criada quando o aluno executa o script Python.<br>
+Antes disso, nenhum roteador, switch ou host existe no sistema.</p>
+</blockquote>
+<p>A topologia utilizada será:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>h1 --- s1 --- r1 --- r2 --- s2 --- h2
+</code></pre><h3 id="endereçamento-ipv4"><strong>Endereçamento IPv4</strong> </h3>
+<table>
+<thead>
+<tr>
+<th>Dispositivo</th>
+<th>Interface</th>
+<th>Endereço IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>r1</strong></td>
+<td>r1-eth1</td>
+<td>10.0.1.1/24</td>
+</tr>
+<tr>
+<td><strong>r1</strong></td>
+<td>r1-eth2</td>
+<td>10.0.12.1/24</td>
+</tr>
+<tr>
+<td><strong>r2</strong></td>
+<td>r2-eth1</td>
+<td>10.0.2.1/24</td>
+</tr>
+<tr>
+<td><strong>r2</strong></td>
+<td>r2-eth2</td>
+<td>10.0.12.2/24</td>
+</tr>
+<tr>
+<td><strong>h1</strong></td>
+<td>h1-eth0</td>
+<td>10.0.1.100/24</td>
+</tr>
+<tr>
+<td><strong>h2</strong></td>
+<td>h2-eth0</td>
+<td>10.0.2.100/24</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sistemas-autônomos-asns"><strong>Sistemas Autônomos (ASNs)</strong> </h3>
+<p>A rede está organizada da seguinte forma:</p>
+<ul>
+<li>
+<p><strong>AS 65001</strong>: Contém o roteador r1, switch s1 e host h1 (Rede 10.0.1.0/24).</p>
+</li>
+<li>
+<p><strong>AS 65002</strong>: Contém o roteador r2, switch s2 e host h2 (Rede 10.0.2.0/24).</p>
+</li>
+</ul>
+<p>Link de Peering: Conexão direta entre r1 e r2 na rede 10.0.12.0/24.</p>
+<hr>
+<h1 id="-4-executar-o-script">🟨 <strong>4) Executar o script</strong> </h1>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">chmod</span> +x bgp-topo.py
+<span class="token function">sudo</span> ./bgp-topo.py
+</code></pre><p>Isso abrirá o CLI do Mininet.</p>
+<hr>
+<h1 id="-5-atividade-completar-as-configurações-bgp">🟦 <strong>5) ATIVIDADE: Completar as configurações BGP</strong> </h1>
+<p>Você deverá descobrir <strong>quais comandos BGP precisam ser adicionados</strong> aos arquivos (variáveis):</p>
+<ul>
+<li><code>r1_conf</code></li>
+<li><code>r2_conf</code></li>
+</ul>
+<p>para que:</p>
+<ol>
+<li>A sessão BGP entre os roteadores <strong>r1</strong> e <strong>r2</strong> seja estabelecida</li>
+<li>As redes conectadas aos hosts sejam anunciadas</li>
+<li>O host <strong>h1</strong> consiga pingar o host <strong>h2</strong> através do roteamento BGP</li>
+</ol>
+<p>Os blocos BGP dentro do script estão assim:</p>
+<h3 id="r1_conf"><strong>r1_conf</strong> </h3>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>enable
+configure terminal
+# COMPLETE AQUI
+</code></pre><h3 id="r2_conf"><strong>r2_conf</strong> </h3>
+<pre data-role="codeBlock" data-info="txt" class="language-txt txt"><code>enable
+configure terminal
+# COMPLETE AQUI
+</code></pre><h2 id="-seu-objetivo-é-descobrir-quais-comandos-devem-ser-adicionados-para">🎯 <strong>Seu objetivo é descobrir quais comandos devem ser adicionados para:</strong> </h2>
+<ul>
+<li>iniciar o processo BGP</li>
+<li>configurar router-id</li>
+<li>configurar vizinhos</li>
+<li>ativar o address-family IPv4</li>
+<li>anunciar as redes locais</li>
+<li>permitir troca de rotas entre AS diferentes</li>
+<li>ativar o vizinho dentro do address-family</li>
+</ul>
+<hr>
+<h1 id="-6-verificações">🧪 <strong>6) Verificações</strong> </h1>
+<p>Para que a atividade seja considerada concluída, você deve garantir:</p>
+<h3 id="️-a-sessão-bgp-entre-r1-e-r2-deve-ser-estabelecida">✔️ A sessão BGP entre r1 e r2 deve ser estabelecida </h3>
+<p>Verifique com:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>r1 vtysh -c "show bgp summary"
+</code></pre><h3 id="️-r1-deve-aprender-a-rota-1002024">✔️ r1 deve aprender a rota 10.0.2.0/24 </h3>
+<h3 id="️-r2-deve-aprender-a-rota-1001024">✔️ r2 deve aprender a rota 10.0.1.0/24 </h3>
+<p>Verifique com:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>r2 vtysh -c "show bgp"
+</code></pre><h3 id="️-h1-deve-conseguir-pingar-h2">✔️ h1 deve conseguir pingar h2 </h3>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>mininet&gt; h1 ping 10.0.2.100
+</code></pre><hr>
+<h2 id="-7-pistas-opcionais">💡 <strong>7) Pistas (opcionais)</strong> </h2>
+<p>Use estas pistas apenas se necessário:</p>
+<ul>
+<li>O vizinho BGP de r1 é <strong>10.0.12.2</strong></li>
+<li>O vizinho BGP de r2 é <strong>10.0.12.1</strong></li>
+<li>As redes a serem anunciadas são:
+<ul>
+<li>r1 → <code>10.0.1.0/24</code></li>
+<li>r2 → <code>10.0.2.0/24</code></li>
+</ul>
+</li>
+<li>O FRR moderno exige uma configuração extra para permitir troca de rotas entre AS diferentes</li>
+<li>A ativação do vizinho ocorre <strong>dentro do address-family</strong></li>
+</ul>
+<hr>
+<h1 id="-8-entrega">📤 <strong>8) Entrega</strong> </h1>
+<p>Cada equipe deverá enviar:</p>
+<ol>
+<li>Os arquivos <strong>r1_conf</strong> e <strong>r2_conf</strong> preenchidos</li>
+<li>Capturas de tela contendo:
+<ul>
+<li><code>show bgp summary</code></li>
+<li><code>show bgp</code></li>
+<li><code>h1 ping 10.0.2.100</code></li>
+</ul>
+</li>
+<li>Um breve relatório (5–10 linhas) explicando:
+<ul>
+<li>o que foi necessário para estabelecer o BGP</li>
+<li>problemas encontrados</li>
+<li>como foram resolvidos</li>
+</ul>
+</li>
+</ol>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
