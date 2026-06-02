@@ -49,8 +49,6 @@ def render_config(task, template_dir="templates"):
     )
     # pega config pronta agr como string
     config_texto = render.result
-    
-
 
 
     # Cria pasta configs, se existir ja deixa queto kk
