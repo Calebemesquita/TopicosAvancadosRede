@@ -1,0 +1,39 @@
+pyenv local 3.11.9
+python -m venv venv
+source venv/bin/activate
+
+pip install --upgrade pip
+pip install -r requirements.txt
+
+sudo python3 topo.py
+
+terminal 2
+# terminal 2
+
+python3 main.py --step all
+# faz tudo: gera configs → aplica → espera → verifica (BGP + ping + backup)
+python3 main.py --step render
+# apenas gera as configurações (Jinja2 + YAML)
+python3 main.py --step deploy
+# gera as configs + aplica nos roteadores (via SSH) + espera BGP
+python3 main.py --step verify
+# verifica a rede: BGP + ping + faz backup
+
+
+
+AS-PATH
+r3 vtysh -c "show ip bgp 203.0.1.0/24"
+r4 vtysh -c "show ip bgp 203.0.2.0/24"
+
+LOCALPREFERENCE
+r2 vtysh -c "show ip bgp 203.100.2.0/24"
+
+MD5 TTL
+r2 vtysh -c "show ip bgp neighbor 203.0.23.2"
+
+BOOGOUNS
+r2 vtysh -c "show ip bgp 192.168.100.0/24"
+r2 vtysh -c "show ip bgp 172.16.0.0/16"
+
+COMUNITES
+r2 vtysh -c "show ip bgp 203.0.1.0/24"

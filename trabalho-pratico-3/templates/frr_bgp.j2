@@ -1,0 +1,125 @@
+configure terminal
+! ---------------------------------------------------------
+! Template Dinâmico BGP - TP4 (Gerado para {{ host.name }})
+! ---------------------------------------------------------
+
+! --- 0. Rotas Estáticas (Garante a origem no BGP) ---
+{% for net in networks %}
+ip route {{ net }} Null0
+{% endfor %}
+
+! --- 1. Configuração de Interfaces ---
+interface lo
+ ip address {{ router_id }}/32
+exit
+
+{% for intf in interfaces %}
+interface {{ intf.name }}
+ description {{ intf.description }}
+ ip address {{ intf.ip }}/{{ intf.prefix }}
+exit
+{% endfor %}
+
+! --- 2. Processo BGP Base ---
+router bgp {{ asn }}
+ bgp router-id {{ router_id }}
+ no bgp ebgp-requires-policy
+
+ ! Anúncio das redes locais
+ {% for net in networks %}
+ network {{ net }}
+ {% endfor %}
+
+ ! Declaração de Vizinhos
+ {% for peer in bgp_neighbors %}
+ neighbor {{ peer.peer_ip }} remote-as {{ peer.peer_asn }}
+ neighbor {{ peer.peer_ip }} description {{ peer.description }}
+ 
+ ! Atividade 2: Autenticação MD5
+ neighbor {{ peer.peer_ip }} password tp3senha
+ 
+ {% if peer.peer_asn != asn %}
+ ! Atividade 3: TTL Security (eBGP apenas)
+ neighbor {{ peer.peer_ip }} ttl-security hops 1
+ {% endif %}
+ {% endfor %}
+
+ ! --- 3. Ativação de Políticas (IPv4) ---
+ address-family ipv4 unicast
+  {% for peer in bgp_neighbors %}
+  neighbor {{ peer.peer_ip }} activate
+  neighbor {{ peer.peer_ip }} send-community both
+  {% endfor %}
+
+  {% if host.name == 'r1' %}
+  ! R1: Marcar prefixo
+  network 203.0.1.0/24 route-map RM_MARK_COMM
+  {% endif %}
+
+  {% if host.name == 'r2' %}
+  ! R2: Políticas IN e OUT
+  neighbor 203.0.23.2 route-map RM_R3_IN in
+  neighbor 203.0.24.2 route-map RM_R4_IN in
+  neighbor 203.0.23.2 route-map RM_R3_OUT out
+  neighbor 203.0.24.2 route-map RM_R4_OUT out
+  {% endif %}
+ exit-address-family
+exit
+
+! --- 4. Route-Maps ---
+
+{% if host.name == 'r1' %}
+ip prefix-list PL_LOCAL seq 5 permit 203.0.1.0/24
+
+route-map RM_MARK_COMM permit 10
+ match ip address prefix-list PL_LOCAL
+ set community 65001:100
+route-map RM_MARK_COMM permit 20
+{% endif %}
+
+{% if host.name == 'r2' %}
+ip prefix-list PL_BOGONS seq 5 permit 192.168.100.0/24
+ip prefix-list PL_BOGONS seq 10 permit 172.16.0.0/16
+
+ip prefix-list PL_NET_R1 seq 5 permit 203.0.1.0/24
+ip prefix-list PL_NET_R2 seq 5 permit 203.0.2.0/24
+ip prefix-list PL_NET_EXT seq 5 permit 203.100.2.0/24
+
+bgp community-list standard COMM_100 permit 65001:100
+bgp community-list standard COMM_200 permit 65001:200
+
+route-map RM_R3_IN deny 10
+ match ip address prefix-list PL_BOGONS
+route-map RM_R3_IN permit 20
+ match ip address prefix-list PL_NET_EXT
+ set local-preference 200
+route-map RM_R3_IN permit 30
+
+route-map RM_R4_IN deny 10
+ match ip address prefix-list PL_BOGONS
+route-map RM_R4_IN permit 20
+ match ip address prefix-list PL_NET_EXT
+ set local-preference 100
+route-map RM_R4_IN permit 30
+
+route-map RM_R3_OUT deny 5
+ match community COMM_200
+route-map RM_R3_OUT permit 10
+ match ip address prefix-list PL_NET_R1
+ set as-path prepend 65001 65001
+route-map RM_R3_OUT permit 20
+ match ip address prefix-list PL_NET_R2
+
+route-map RM_R4_OUT deny 5
+ match community COMM_200
+route-map RM_R4_OUT permit 10
+ match ip address prefix-list PL_NET_R2
+ set as-path prepend 65001 65001
+route-map RM_R4_OUT permit 20
+ match community COMM_100
+route-map RM_R4_OUT permit 30
+ match ip address prefix-list PL_NET_R1
+{% endif %}
+
+end
+write
