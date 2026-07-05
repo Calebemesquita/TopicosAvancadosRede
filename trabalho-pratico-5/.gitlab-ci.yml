@@ -1,0 +1,38 @@
+stages:
+  - validate
+  - dry-run
+  - deploy
+
+default:
+  image: python:3.11-slim
+  before_script:
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+
+validate:
+  stage: validate
+  script:
+    - python scripts/validate_templates.py
+    - pytest -q
+
+dry-run:
+  stage: dry-run
+  script:
+    - python scripts/dry_run.py
+  artifacts:
+    when: always
+    paths:
+      - artifacts/dry_run_output.txt
+      - artifacts/rendered/
+    expire_in: 1 week
+
+deploy:
+  stage: deploy
+  script:
+    - python scripts/deploy.py
+  when: manual
+  allow_failure: false
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
+    - when: manual
