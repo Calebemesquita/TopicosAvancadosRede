@@ -1,0 +1,10 @@
+---
+routers:
+  platform: "linux"
+  username: "root"
+  password: "root"
+  connection_options:
+    paramiko:
+      extras:
+        look_for_keys: false
+        allow_agent: false

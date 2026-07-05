@@ -1,0 +1,23 @@
+---
+runner:
+  plugin: threaded
+  options:
+    num_workers: 4
+
+inventory:
+  plugin: SimpleInventory
+  options:
+    host_file: inventory/hosts.yaml
+    group_file: inventory/groups.yaml
+    defaults_file: inventory/defaults.yaml
+
+netbox:
+  url_env: NETBOX_URL
+  token_env: NETBOX_TOKEN
+  inventory_builder: scripts/netbox_inventory.py
+  note: "O lab local usa SimpleInventory. Quando NETBOX_URL e NETBOX_TOKEN existem, os scripts geram artifacts/netbox_hosts.yaml a partir do NetBox e usam isso no Nornir."
+
+logging:
+  enabled: true
+  file: logs/nornir.log
+  level: INFO

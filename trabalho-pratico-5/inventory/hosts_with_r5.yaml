@@ -1,0 +1,146 @@
+---
+r1:
+  hostname: "127.0.0.1"
+  port: 2201
+  groups:
+    - routers
+  data:
+    router_id: "1.1.1.1"
+    asn: 65001
+    loopback: "1.1.1.1/32"
+    interfaces:
+      - name: "r1-eth1"
+        ip: "203.0.1.1"
+        prefix: "24"
+        description: "Link to s1 (LAN)"
+      - name: "r1-eth2"
+        ip: "203.0.12.1"
+        prefix: "30"
+        description: "Link to r2"
+    bgp_neighbors:
+      - peer_ip: "203.0.12.2"
+        peer_asn: 65001
+        peer_name: "r2"
+        description: "iBGP para r2"
+    networks:
+      - "203.0.1.0/24"
+
+r2:
+  hostname: "127.0.0.1"
+  port: 2202
+  groups:
+    - routers
+  data:
+    router_id: "2.2.2.2"
+    asn: 65001
+    loopback: "2.2.2.2/32"
+    interfaces:
+      - name: "r2-eth1"
+        ip: "203.0.2.1"
+        prefix: "24"
+        description: "Link to s2 (LAN)"
+      - name: "r2-eth2"
+        ip: "203.0.12.2"
+        prefix: "30"
+        description: "Link to r1"
+      - name: "r2-eth3"
+        ip: "203.0.23.1"
+        prefix: "30"
+        description: "Link to r3"
+      - name: "r2-eth4"
+        ip: "203.0.24.1"
+        prefix: "30"
+        description: "Link to r4"
+      - name: "r2-eth5"
+        ip: "203.0.25.1"
+        prefix: "30"
+        description: "Link to r5 (Atividade 11)"
+    bgp_neighbors:
+      - peer_ip: "203.0.12.1"
+        peer_asn: 65001
+        peer_name: "r1"
+        description: "iBGP para r1"
+      - peer_ip: "203.0.23.2"
+        peer_asn: 65010
+        peer_name: "r3"
+        description: "eBGP para r3"
+      - peer_ip: "203.0.24.2"
+        peer_asn: 65020
+        peer_name: "r4"
+        description: "eBGP para r4"
+      - peer_ip: "203.0.25.2"
+        peer_asn: 65030
+        peer_name: "r5"
+        description: "eBGP para r5"
+    networks:
+      - "203.0.2.0/24"
+
+r3:
+  hostname: "127.0.0.1"
+  port: 2203
+  groups:
+    - routers
+  data:
+    router_id: "3.3.3.3"
+    asn: 65010
+    loopback: "3.3.3.3/32"
+    interfaces:
+      - name: "r3-eth1"
+        ip: "203.0.23.2"
+        prefix: "30"
+        description: "Link to r2"
+    bgp_neighbors:
+      - peer_ip: "203.0.23.1"
+        peer_asn: 65001
+        peer_name: "r2"
+        description: "eBGP para r2"
+    networks:
+      - "203.100.2.0/24"
+      - "203.101.0.0/24"
+      - "192.168.100.0/24"
+
+r4:
+  hostname: "127.0.0.1"
+  port: 2204
+  groups:
+    - routers
+  data:
+    router_id: "4.4.4.4"
+    asn: 65020
+    loopback: "4.4.4.4/32"
+    interfaces:
+      - name: "r4-eth1"
+        ip: "203.0.24.2"
+        prefix: "30"
+        description: "Link to r2"
+    bgp_neighbors:
+      - peer_ip: "203.0.24.1"
+        peer_asn: 65001
+        peer_name: "r2"
+        description: "eBGP para r2"
+    networks:
+      - "203.100.2.0/24"
+      - "203.102.0.0/24"
+      - "172.16.0.0/16"
+
+r5:
+  hostname: "127.0.0.1"
+  port: 2205
+  groups:
+    - routers
+  data:
+    router_id: "5.5.5.5"
+    asn: 65030
+    loopback: "5.5.5.5/32"
+    interfaces:
+      - name: "r5-eth1"
+        ip: "203.0.25.2"
+        prefix: "30"
+        description: "Link to r2"
+    bgp_neighbors:
+      - peer_ip: "203.0.25.1"
+        peer_asn: 65001
+        peer_name: "r2"
+        description: "eBGP para r2"
+    networks:
+      - "203.200.0.0/24"
