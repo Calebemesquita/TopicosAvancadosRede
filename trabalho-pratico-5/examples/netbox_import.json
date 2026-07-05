@@ -1,0 +1,33 @@
+{
+  "site": {"name": "Lab Network", "slug": "lab-network"},
+  "manufacturer": {"name": "FRR Project"},
+  "device_type": {"name": "FRR Router", "part_number": "FRR-v9.0"},
+  "devices": [
+    {"name": "r1", "asn": 65001, "role": "Core", "router_id": "1.1.1.1"},
+    {"name": "r2", "asn": 65001, "role": "Edge", "router_id": "2.2.2.2"},
+    {"name": "r3", "asn": 65010, "role": "Upstream 1", "router_id": "3.3.3.3"},
+    {"name": "r4", "asn": 65020, "role": "Upstream 2", "router_id": "4.4.4.4"}
+  ],
+  "interfaces": [
+    {"device": "r1", "name": "lo", "ip": "1.1.1.1/32", "description": "Router-ID r1"},
+    {"device": "r1", "name": "r1-eth1", "ip": "203.0.1.1/24", "description": "LAN connection"},
+    {"device": "r1", "name": "r1-eth2", "ip": "203.0.12.1/30", "description": "iBGP to r2"},
+    {"device": "r2", "name": "lo", "ip": "2.2.2.2/32", "description": "Router-ID r2"},
+    {"device": "r2", "name": "r2-eth1", "ip": "203.0.2.1/24", "description": "LAN connection"},
+    {"device": "r2", "name": "r2-eth2", "ip": "203.0.12.2/30", "description": "iBGP to r1"},
+    {"device": "r2", "name": "r2-eth3", "ip": "203.0.23.1/30", "description": "eBGP to r3"},
+    {"device": "r2", "name": "r2-eth4", "ip": "203.0.24.1/30", "description": "eBGP to r4"},
+    {"device": "r3", "name": "lo", "ip": "3.3.3.3/32", "description": "Router-ID r3"},
+    {"device": "r3", "name": "r3-eth1", "ip": "203.0.23.2/30", "description": "eBGP to r2"},
+    {"device": "r4", "name": "lo", "ip": "4.4.4.4/32", "description": "Router-ID r4"},
+    {"device": "r4", "name": "r4-eth1", "ip": "203.0.24.2/30", "description": "eBGP to r2"}
+  ],
+  "bgp_neighbors": [
+    {"device": "r1", "peer": "r2", "peer_ip": "203.0.12.2", "peer_asn": 65001, "type": "iBGP"},
+    {"device": "r2", "peer": "r1", "peer_ip": "203.0.12.1", "peer_asn": 65001, "type": "iBGP"},
+    {"device": "r2", "peer": "r3", "peer_ip": "203.0.23.2", "peer_asn": 65010, "type": "eBGP"},
+    {"device": "r2", "peer": "r4", "peer_ip": "203.0.24.2", "peer_asn": 65020, "type": "eBGP"},
+    {"device": "r3", "peer": "r2", "peer_ip": "203.0.23.1", "peer_asn": 65001, "type": "eBGP"},
+    {"device": "r4", "peer": "r2", "peer_ip": "203.0.24.1", "peer_asn": 65001, "type": "eBGP"}
+  ]
+}

@@ -1,0 +1,22 @@
+Exemplo de logs esperados no GitLab CI/CD:
+
+[validate]
+OK template: access_lists.j2
+OK template: bgp.j2
+OK template: frr_bgp.j2
+OK template: interfaces.j2
+OK template: route_maps.j2
+OK template: verify_bgp.j2
+SKIP netbox: defina NETBOX_URL e NETBOX_TOKEN no GitLab para validar API
+
+[dry-run]
+Artefato salvo em artifacts/dry_run_output.txt
+
+[deploy]
+Esperando FRR responder nos roteadores
+Renderizando configuracoes
+Aplicando configuracao em r1
+Aplicando configuracao em r2
+Aplicando configuracao em r3
+Aplicando configuracao em r4
+Verificando BGP, pings e backups
