@@ -1,0 +1,40 @@
+{% if host.name == 'r1' %}
+route-map RM_MARK_COMM permit 10
+ match ip address prefix-list PL_LOCAL
+ set community 65001:100
+route-map RM_MARK_COMM permit 20
+{% endif %}
+
+{% if host.name == 'r2' %}
+route-map RM_R3_IN deny 10
+ match ip address prefix-list PL_BOGONS
+route-map RM_R3_IN permit 20
+ match ip address prefix-list PL_NET_EXT
+ set local-preference 200
+route-map RM_R3_IN permit 30
+
+route-map RM_R4_IN deny 10
+ match ip address prefix-list PL_BOGONS
+route-map RM_R4_IN permit 20
+ match ip address prefix-list PL_NET_EXT
+ set local-preference 100
+route-map RM_R4_IN permit 30
+
+route-map RM_R3_OUT deny 5
+ match community COMM_200
+route-map RM_R3_OUT permit 10
+ match ip address prefix-list PL_NET_R1
+ set as-path prepend 65001 65001
+route-map RM_R3_OUT permit 20
+ match ip address prefix-list PL_NET_R2
+
+route-map RM_R4_OUT deny 5
+ match community COMM_200
+route-map RM_R4_OUT permit 10
+ match ip address prefix-list PL_NET_R2
+ set as-path prepend 65001 65001
+route-map RM_R4_OUT permit 20
+ match community COMM_100
+route-map RM_R4_OUT permit 30
+ match ip address prefix-list PL_NET_R1
+{% endif %}

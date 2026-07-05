@@ -1,0 +1,21 @@
+configure terminal
+! ---------------------------------------------------------
+! Template Dinamico BGP/GitOps (Gerado para {{ host.name }})
+! ---------------------------------------------------------
+
+! --- 0. Rotas Estaticas (Garante a origem no BGP) ---
+{% for net in networks %}
+ip route {{ net }} Null0
+{% endfor %}
+
+{% include "interfaces.j2" %}
+
+! --- 2. Processo BGP Base ---
+{% include "bgp.j2" %}
+
+! --- 3. Filtros, Communities e Route-Maps ---
+{% include "access_lists.j2" %}
+{% include "route_maps.j2" %}
+
+end
+write

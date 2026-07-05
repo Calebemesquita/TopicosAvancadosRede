@@ -1,0 +1,39 @@
+router bgp {{ asn }}
+ bgp router-id {{ router_id }}
+ no bgp ebgp-requires-policy
+
+ ! Anuncio das redes locais
+ {% for net in networks %}
+ {% if not (host.name == 'r1' and net == '203.0.1.0/24') %}
+ network {{ net }}
+ {% endif %}
+ {% endfor %}
+
+ ! Declaracao de vizinhos
+ {% for peer in bgp_neighbors %}
+ neighbor {{ peer.peer_ip }} remote-as {{ peer.peer_asn }}
+ neighbor {{ peer.peer_ip }} description {{ peer.description }}
+ neighbor {{ peer.peer_ip }} password tp3senha
+ {% if peer.peer_asn != asn %}
+ neighbor {{ peer.peer_ip }} ttl-security hops 1
+ {% endif %}
+ {% endfor %}
+
+ address-family ipv4 unicast
+  {% for peer in bgp_neighbors %}
+  neighbor {{ peer.peer_ip }} activate
+  neighbor {{ peer.peer_ip }} send-community both
+  {% endfor %}
+
+  {% if host.name == 'r1' %}
+  network 203.0.1.0/24 route-map RM_MARK_COMM
+  {% endif %}
+
+  {% if host.name == 'r2' %}
+  neighbor 203.0.23.2 route-map RM_R3_IN in
+  neighbor 203.0.24.2 route-map RM_R4_IN in
+  neighbor 203.0.23.2 route-map RM_R3_OUT out
+  neighbor 203.0.24.2 route-map RM_R4_OUT out
+  {% endif %}
+ exit-address-family
+exit

@@ -1,0 +1,11 @@
+! --- 1. Configuracao de Interfaces ---
+interface lo
+ ip address {{ router_id }}/32
+exit
+
+{% for intf in interfaces %}
+interface {{ intf.name }}
+ description {{ intf.description }}
+ ip address {{ intf.ip }}/{{ intf.prefix }}
+exit
+{% endfor %}

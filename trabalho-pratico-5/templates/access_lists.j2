@@ -1,0 +1,17 @@
+{% if host.name == 'r1' %}
+ip prefix-list PL_LOCAL seq 5 permit 203.0.1.0/24
+{% endif %}
+
+{% if host.name == 'r2' %}
+ip prefix-list PL_BOGONS seq 5 permit 10.0.0.0/8
+ip prefix-list PL_BOGONS seq 10 permit 172.16.0.0/12 le 32
+ip prefix-list PL_BOGONS seq 15 permit 192.168.0.0/16 le 32
+ip prefix-list PL_BOGONS seq 20 permit 192.168.100.0/24
+
+ip prefix-list PL_NET_R1 seq 5 permit 203.0.1.0/24
+ip prefix-list PL_NET_R2 seq 5 permit 203.0.2.0/24
+ip prefix-list PL_NET_EXT seq 5 permit 203.100.2.0/24
+
+bgp community-list standard COMM_100 permit 65001:100
+bgp community-list standard COMM_200 permit 65001:200
+{% endif %}
