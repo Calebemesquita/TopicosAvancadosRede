@@ -1,50 +1,38 @@
-image: python:3.10-slim
-
 stages:
-  - validacao
-  - geracao_artifact
-  - execucao
+  - validate
+  - dry-run
+  - deploy
 
-
-testar_yaml:
-  stage: validacao
-  script:
-    - echo "Instalando yamllint"
-    - pip install yamllint
-    - echo "Verificando o config.yaml da parte 1"
-    - yamllint trabalho-pratico-1/part-1/config.yaml
-
-criar_arquivo:
-  stage: geracao_artifact
-  script:
-    - echo "Gerando arquivo de saida:"
-    - echo "Este arquivo foi gerado automaticamente pelo pipeline CI/CD na etapa de artifact." > output.txt
-  artifacts:
-    paths:
-      - output.txt
-    expire_in: 1 week
-
-rodar_python_p1:
-  stage: execucao
-  script:
-    - echo "Executando o script.py da Parte 1"
-    - cd trabalho-pratico-1/part-1 && python
-
-validar_json_p4:
-  stage: validacao
-  script:
-    - echo "Validando a sintaxe do JSON do NetBox..."
-    - python -m json.tool trabalho-pratico-1/part-4/netbox_dados_jinja.json > /dev/null
-
-gerar_configs_bgp_p4:
-  stage: geracao_artifact
+default:
+  image: python:3.11-slim
   before_script:
-    - pip install jinja2
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+
+validate:
+  stage: validate
   script:
-    - echo "Gerando configs do BGP com Jinja2..."
-    - cd trabalho-pratico-1/part-4 && python -c "import topologia; topologia.gerar_configs_jinja()"
+    - python scripts/validate_templates.py
+    - pytest -q
+
+dry-run:
+  stage: dry-run
+  script:
+    - python scripts/dry_run.py
   artifacts:
+    when: always
     paths:
-      - trabalho-pratico-1/part-4/configs/
+      - artifacts/dry_run_output.txt
+      - artifacts/rendered/
     expire_in: 1 week
-    name: "Configs_BGP_Producao"
+
+deploy:
+  stage: deploy
+  script:
+    - python scripts/deploy.py
+  when: manual
+  allow_failure: false
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
+    - when: manual
